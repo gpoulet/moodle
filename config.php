@@ -7,16 +7,16 @@ $CFG = new stdClass();
 $CFG->dbtype    = 'pgsql';
 $CFG->dblibrary = 'native';
 
-if (!isset(getenv("IS_PROD"))) {
-  $CFG->dbhost    = 'localhost';
-  $CFG->dbname    = 'moodle';
-  $CFG->dbuser    = 'moodle';
-  $CFG->dbpass    = 'moodle';
-} else {
+if (getenv("IS_PROD")) {
   $CFG->dbhost    = getenv("POSTGRESQL_ADDON_HOST");
   $CFG->dbname    = getenv("POSTGRESQL_ADDON_DB");
   $CFG->dbuser    = getenv("POSTGRESQL_ADDON_USER");
   $CFG->dbpass    = getenv("POSTGRESQL_ADDON_PASSWORD");
+} else {
+  $CFG->dbhost    = 'localhost';
+  $CFG->dbname    = 'moodle';
+  $CFG->dbuser    = 'moodle';
+  $CFG->dbpass    = 'moodle';
 }
 
 $CFG->prefix    = 'mdl_';
