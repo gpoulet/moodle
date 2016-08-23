@@ -8,11 +8,14 @@ $CFG->dbtype    = 'pgsql';
 $CFG->dblibrary = 'native';
 
 if (getenv("IS_PROD")) {
+  error_log("IS_PROD");
+  error_log(getenv("POSTGRESQL_ADDON_HOST"));
   $CFG->dbhost    = getenv("POSTGRESQL_ADDON_HOST");
   $CFG->dbname    = getenv("POSTGRESQL_ADDON_DB");
   $CFG->dbuser    = getenv("POSTGRESQL_ADDON_USER");
   $CFG->dbpass    = getenv("POSTGRESQL_ADDON_PASSWORD");
 } else {
+  error_log("IS_DEV");
   $CFG->dbhost    = 'localhost';
   $CFG->dbname    = 'moodle';
   $CFG->dbuser    = 'moodle';
