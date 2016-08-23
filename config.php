@@ -6,10 +6,19 @@ $CFG = new stdClass();
 
 $CFG->dbtype    = 'pgsql';
 $CFG->dblibrary = 'native';
-$CFG->dbhost    = 'localhost';
-$CFG->dbname    = 'moodle';
-$CFG->dbuser    = 'moodle';
-$CFG->dbpass    = 'moodle';
+
+if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == '127.0.0.1' ) {
+  $CFG->dbhost    = 'localhost';
+  $CFG->dbname    = 'moodle';
+  $CFG->dbuser    = 'moodle';
+  $CFG->dbpass    = 'moodle';
+} else {
+  $CFG->dbhost    = getenv("POSTGRESQL_ADDON_HOST");
+  $CFG->dbname    = getenv("POSTGRESQL_ADDON_DB");
+  $CFG->dbuser    = getenv("POSTGRESQL_ADDON_USER");
+  $CFG->dbpass    = getenv("POSTGRESQL_ADDON_PASSWORD");
+}
+
 $CFG->prefix    = 'mdl_';
 $CFG->dboptions = array (
   'dbpersist' => 0,
@@ -18,7 +27,7 @@ $CFG->dboptions = array (
 );
 
 $CFG->wwwroot   = 'http://localhost';
-$CFG->dataroot  = '/Users/gpoulet/workspace/moodledata';
+$CFG->dataroot  = '/moodledata';
 $CFG->admin     = 'admin';
 
 $CFG->directorypermissions = 0777;
