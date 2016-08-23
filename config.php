@@ -14,12 +14,16 @@ if (getenv("IS_PROD")) {
   $CFG->dbname    = getenv("POSTGRESQL_ADDON_DB");
   $CFG->dbuser    = getenv("POSTGRESQL_ADDON_USER");
   $CFG->dbpass    = getenv("POSTGRESQL_ADDON_PASSWORD");
+
+  $CFG->wwwroot   = getenv("URL");
 } else {
   error_log("IS_DEV");
   $CFG->dbhost    = 'localhost';
   $CFG->dbname    = 'moodle';
   $CFG->dbuser    = 'moodle';
   $CFG->dbpass    = 'moodle';
+
+  $CFG->wwwroot   = 'http://localhost';
 }
 
 $CFG->prefix    = 'mdl_';
@@ -29,7 +33,6 @@ $CFG->dboptions = array (
   'dbsocket' => '',
 );
 
-$CFG->wwwroot   = 'http://localhost';
 $CFG->dataroot  = getenv("APP_HOME").'/moodledata';
 $CFG->admin     = 'admin';
 
