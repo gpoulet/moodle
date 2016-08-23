@@ -7,7 +7,7 @@ $CFG = new stdClass();
 $CFG->dbtype    = 'pgsql';
 $CFG->dblibrary = 'native';
 
-if (!getenv("IS_PROD")) {
+if (!isset(getenv("IS_PROD"))) {
   $CFG->dbhost    = 'localhost';
   $CFG->dbname    = 'moodle';
   $CFG->dbuser    = 'moodle';
