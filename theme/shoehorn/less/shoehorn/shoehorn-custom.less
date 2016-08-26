@@ -1,0 +1,1698 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+// Shoehorn theme with the underlying Bootstrap theme.
+// @package    theme
+// @subpackage shoehorn
+// @copyright  &copy; 2014-onwards G J Barnard in respect to modifications of the Bootstrap theme.
+// @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
+// @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+/* shoehorn-custom.less */
+// Shoehorn custom additions / changes.
+
+// HTML.
+html {
+    background-color: ~"[[setting:htmlbackground]]";
+}
+
+html.report {
+    background-color: ~"[[setting:pagebottombackground]]";
+    #shoehorn > .verticalsettting(~"[[setting:pagetopbackgroundrgba]]", ~"[[setting:pagebottombackgroundrgba]]");
+}
+
+// Body and scaffolding.
+body {
+    color: ~"[[setting:textcolour]]";
+    background-color: ~"[[setting:pagebottombackground]]";
+    #shoehorn > .verticalsettting(~"[[setting:pagetopbackgroundrgba]]", ~"[[setting:pagebottombackgroundrgba]]");
+}
+
+body.pagelayout-redirect {
+    color: #FFF;
+}
+
+a, .mform legend a {
+    color: ~"[[setting:linkcolour]]";
+    &:hover, &:active, &:focus {
+        color: ~"[[setting:linkcolourhover]]";
+    }
+}
+
+// Navbar.
+.navbar {
+    .navbar-header {
+        .goto-bottom {
+            .navbar-brand;
+            color: ~"[[setting:navbardefaultcolour]]";
+            background-color: inherit;
+            &:hover,
+            &:focus,
+            &:active {
+                color: ~"[[setting:navbardefaultcolourlight]]";
+                #shoehorn > .background-opacity(~"[[setting:navbardefaulthover]]"; ~"[[setting:navbardefaulthoverrgba]]");
+            }
+        }
+        .search-input-wrapper span {
+            color: ~"[[setting:navbardefaultcolour]]";
+        }
+    }
+    &.navbar-inverse .navbar-header {
+        .goto-bottom {
+            color: @navbar-inverse-link-color;
+            &:hover,
+            &:focus,
+            &:active {
+                color: @navbar-inverse-link-hover-color;
+                background-color: @navbar-inverse-link-hover-bg;
+            }
+        }
+        .search-input-wrapper span {
+            color: @navbar-inverse-color;
+        }
+    }
+    ul li > a {
+        > span {
+            padding: 0 1px;
+        }
+    }
+}
+
+.has_dock .navbar {
+    margin-left: -25px;
+    &.navbar-fixed-top {
+        margin-left: 0;
+    }
+}
+
+body.compactnavbar {
+    .navbar {
+        display: inline-block;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        .navbar-collapse, > .container-fluid, > .container-fluid > .navbar-header {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .navbar-nav {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .navbar-brand {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    &.dir-ltr .navbar {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: @border-radius-large * 4;
+        &-default #moodle-navbar, &-inverse #moodle-navbar {
+            .navbar-nav {
+                > li:last-child > a {
+                    &:hover, &:focus {
+                        border-bottom-right-radius: @border-radius-large * 4;
+                    }
+                }
+            }
+        }
+    }
+    .navbar.navbar-fixed-top {
+        display: inline-table;
+    }
+    // RTL.
+    &.dir-rtl {
+        .navbar.navbar-fixed-top {
+            left: inherit;
+        }
+    }
+    &.dir-rtl .navbar {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: @border-radius-large * 4;
+        &-default #moodle-navbar, &-inverse #moodle-navbar {
+            .navbar-nav {
+                > li:last-child > a {
+                    &:hover, &:focus {
+                        border-bottom-left-radius: @border-radius-large * 4;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navbar-brand {
+  @media (min-width: @grid-float-breakpoint) {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (min-width: @grid-float-breakpoint) {
+  .navbar > .container,
+  .navbar > .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .navbar-collapse {
+    padding-right: 0;
+  }
+}
+
+.navbar-toggle {
+  padding: 6px 7px;
+  .icon-bar {
+    height: 4px;
+    border-radius: 4px;
+  }
+  .icon-bar + .icon-bar {
+    margin-top: 2px;
+  }
+}
+
+body.navbarfixedtop header.moodleheader {
+    padding-top: 50px;
+}
+
+.dropdown-menu {
+    .icon {
+        margin-right: 5px;
+    }
+}
+
+// General.
+.glyphicon-2x {
+    font-size: 1.8em;
+}
+
+@media(max-width: @screen-sm-min) {
+    table {
+        th, td {
+            word-break: break-word;
+            word-wrap: break-word;
+        }
+    }
+}
+
+// https://gist.github.com/salilpa/2e7f40ac5358c32f9b20
+// https://gist.github.com/daz/2168334
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  _width: 160px;
+  padding: 5px;
+  margin: 2px 0 0 0;
+  list-style: none;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: @border-radius-base;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+
+  .ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    white-space: nowrap;
+
+    &.ui-state-hover, &.ui-state-active {
+      text-decoration: none;
+      border-radius: 0;
+      background-image: none;
+    }
+  }
+}
+ 
+.ui-autocomplete {
+  max-height: 240px;
+  max-width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+.courseitemsearch {
+  width: 100%;
+  p, > div {
+    display: inline;
+  }
+  input {
+    margin-bottom: 4px;
+  }
+  #courseitemsearch {
+    width: 24%;
+  }
+  #courseitemsearchresults {
+    position: relative;
+  }
+  .ui-autocomplete {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.dir-rtl {
+  .courseitemsearch ul.ui-autocomplete {
+     margin: 0;
+  }
+}
+
+.ui-autocomplete {
+  background-color: #ffffff;
+  border-color: ~"[[setting:pagetopbackground]]";
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ui-autocomplete-loading {
+  background: white url('[[pix:i/loading_small]]') right center no-repeat;
+}
+ 
+.ui-autocomplete {
+  .ui-menu-item {
+    color: ~"[[setting:textcolour]]";
+    &:hover, &:focus {
+      color: @white;
+      background-color: ~"[[setting:textcolour]]";
+    }
+  }
+}
+
+// Login box.
+body.loginpageimages {
+    background-color: transparent;
+    background-image: none;
+
+    .loginbox {
+        a:hover, a:focus {
+            font-weight: bold;
+        }
+    }
+
+    #page, #page-footer, #footer-shadow {
+        background-image: none;
+    }
+    #page-footer #footermenu {
+        .panel();
+        .panel-default();
+        a {
+            color: ~"[[setting:pagetopbackground]]";
+            &:hover, &:active, &:focus {
+                font-weight: bold;
+                background-color: ~"[[setting:pagebottombackgroundlight4rgba]]";
+            }
+        }
+    }
+    #page-footer #footermenu {
+        // Separate to override above.
+        background-color: ~"[[setting:pagebottombackground5rgba]]";
+        border: 1px solid ~"[[setting:pagebottombackground7rgba]]";
+    }
+}
+
+
+// Block specific scaffolding.less as background highlight moves icon on Chrome!
+aside .block a, #dockeditempanel a {
+    &:hover,
+        &:focus {
+        text-decoration: none;
+        background-color: transparent;
+        border-radius: 0;
+    }
+}
+
+aside .block {
+    a {
+        &:hover,
+            &:focus {
+            font-weight: bold;
+        }
+    }
+    li.contains_branch > p:hover {
+        font-weight: bold;
+    }
+}
+
+#dockeditempanel a {
+    &:hover,
+        &:focus {
+        color: ~"[[setting:footerbottombackground]]";
+    }
+}
+
+// Accordion block regions.
+.collapse-blocks {
+    &.panel-group .panel {
+        border-radius: 0;
+    }
+    &.panel-group .panel + .panel {
+        margin-top: 0;
+    }
+    .block .header {
+        border-bottom: 0;
+        display: block;
+    }
+    .block .controlshtml {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    div.block:first-child {
+        border-top-left-radius: @border-radius-base;
+        border-top-right-radius: @border-radius-base;
+    }
+    div.block:last-child {
+        border-bottom-left-radius: @border-radius-base;
+        border-bottom-right-radius: @border-radius-base;
+    }
+}
+body.editing .collapse-blocks {
+    .block {
+        min-height: 200px;
+    }
+}
+
+// Header.
+header {
+    color: @gray-lighter;
+    &.moodleheader {
+        margin-bottom: 10px;
+    }
+}
+
+body {
+    &.allpagesbackgroundimage, &.frontpagebackgroundimage {
+        @rgbwbaba: %("rgba(%d, %d, %d, %d);", round(red(@well-bg)), round(green(@well-bg)), round(blue(@well-bg)), 0.5);
+        @rgbwbobo: %("rgba(%d, %d, %d, %d);", round(red(@well-border)), round(green(@well-border)), round(blue(@well-border)), 0.7);
+        .moodleheader {
+            .heading a, .logoheading {
+                color: ~"[[setting:textcolour]]";
+            }
+            .logoheading {
+                padding: 4px;
+            }
+            .heading a {
+                #shoehorn > .background-opacity(@well-bg; @rgbwbaba);
+                border-style: solid;
+                border-width: 1px;
+                #shoehorn > .border-opacity(@well-border; @rgbwbobo);
+                border-radius: @border-radius-base;
+                padding: 0 4px;
+                &:hover,
+                &:focus {
+                    background-color: rgba(red(@page-bottom-bg), green(@page-bottom-bg), blue(@page-bottom-bg), 0.7);
+                }
+            }
+        }
+        .panel-default, .block, .forumpost {
+            #shoehorn > .background-opacity(@well-bg; @rgbwbaba);
+            #shoehorn > .border-opacity(@well-border; @rgbwbobo);
+        }
+    }
+}
+
+// Heading with logo / no logo.
+.moodleheader {
+    .logoheading, .heading a {
+        color: ~"[[setting:pageheadertextcolour]]";
+    }
+    .heading a {
+        padding: 0 4px;
+    }
+}
+
+header.moodleheader {
+    .heading {
+        display: inline-block;
+    }
+}
+
+// Front page slider.
+#frontpageslider {
+    padding: 10px;
+}
+
+// Page.
+body.pagelayout-redirect #page {
+    color: ~"[[setting:textcolour]]";
+}
+
+#region-main-shoehorn {
+    background-color: @body-bg;
+    box-shadow: 0 0 8px ~"[[setting:pagetopbackground]]";
+    padding: 8px;
+
+    // Make the background fill the whole area when the region contains floated elements,
+    // thus making sure the height covers the entire area.
+    // http://stackoverflow.com/questions/7817269/css-container-div-not-getting-height.
+    &:after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+
+    aside {
+        float: none; // My home page.
+    }
+
+    .block, .panel-default {
+        background-color: rgba(red(@body-bg), green(@body-bg), blue(@body-bg), 0.9);
+    }
+}
+
+table.userenrolment {
+    margin-bottom: 4px;
+}
+
+// Categories.
+#navsearchbox {
+    border-top-left-radius: @border-radius-base;
+    border-bottom-left-radius: @border-radius-base;
+    float: right;
+}
+
+// Course.
+body.editing .course-content {
+    .right {
+        a {
+            display: block;
+        }
+        br {
+            display: none;
+        }
+    }
+}
+
+// Padding on small devices.
+@media(max-width: @screen-sm-max) {
+    aside:first-of-type {
+        padding-top: 10px;
+    }
+}
+
+// Breadcrumb.
+.breadcrumb {
+    span {
+        color: ~"[[setting:textcolour]]";
+    }
+    .divider {
+        padding: 0 4px;
+    }
+    .divider, .divider .glyphicon {
+        color: ~"[[setting:textcolour]]";
+    }
+}
+
+// Blocks & dock.
+.block, #dockeditempanel, #dock {
+    .header .block_action, .dockeditempanel_hd .commands, .controls {
+        img, input {
+            background-color: rgba(255, 255, 255, 0.7);
+            vertical-align: top;
+            border-radius: 0;
+        }
+    }
+    .dockeditempanel_hd .commands .menubar {
+        img, input {
+            margin: 0em;
+            border: 1px solid ~"[[setting::pagetopbackground]]";
+            border-radius: 2px;
+        }
+    }
+    .dockeditempanel_hd .commands a {
+        &:hover, &:focus {
+            background-color: transparent;
+        }
+    }
+}
+
+.block label {
+    min-width: 70px;
+}
+
+.editing {
+    // Give space to 'empty' regions.
+    &.empty-region-side-pre #block-region-side-pre, &.used-region-side-pre #block-region-side-pre,
+    &.empty-region-side-post #block-region-side-post, &.used-region-side-post #block-region-side-post,
+    &.empty-region-page-bottom #block-region-page-bottom, &.used-region-page-bottom #block-region-page-bottom,
+    &.empty-region-footer-pre #block-region-footer-pre, &.used-region-footer-pre #block-region-footer-pre,
+    &.empty-region-footer-post #block-region-footer-post, &.used-region-footer-post #block-region-footer-post {
+        min-height: 200px;
+    }
+
+    // Using 'used' instead of 'empty' as body class will be 'used' as soon as D&D starts.
+    &.used-region-side-pre #block-region-side-pre,
+    &.used-region-side-post #block-region-side-post,
+    &.used-region-page-bottom #block-region-page-bottom,
+    &.used-region-footer-pre #block-region-footer-pre,
+    &.used-region-footer-post #block-region-footer-post {
+        border: 2px @body-bg dashed;
+    }
+}
+
+// Fake blocks.
+.block.block_fake {
+    color: ~"[[setting:navbardefaultcolour]]";
+    background-color: ~"[[setting:navbardefaultbackground8rgba]]";
+    .panel-default > .panel-heading, a, .header h2 {
+        color: ~"[[setting:navbardefaultcolour]]";
+    }
+    &.block_style_guide {
+        .panel;
+        margin-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        .header .title h2:before {
+            content: @fa-var-paint-brush;
+            font-family: FontAwesome;
+        }
+    }
+}
+
+// Button.
+.heading-rts {
+  margin-top: 18px;
+  .btn {
+    float: right;
+  }
+}
+
+.footer-rts {
+  margin-top: 8px;
+}
+
+// My home.
+#region-main .block {
+    color: ~"[[setting:textcolour]]";
+
+    .header {
+        color: ~"[[setting:textcolour]]";
+    }
+}
+
+// My Dashboard.
+#allcourses {
+    float: right;
+    margin-bottom: 4px;
+    a {
+        transition: all ease-out 0.25s;
+    }
+}
+
+.mycourseboxes {
+    overflow: auto;
+    clear: both;
+}
+
+.mycourseboxes .view {
+    width: 220px;
+    height: 175px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    background: transparent;
+    margin: 0 10px 10px 0;
+    border: 2px solid ~"[[setting:pagebottombackground]]";
+    border-radius: 5px;
+
+    .mask {
+        background-color: ~"[[setting:pagebottombackgroundlight]]";
+    }
+
+    .mask, .content {
+        width: 220px;
+        height: 175px;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+    }
+
+    img {
+        display: block;
+        position: relative;
+    }
+
+    h2 {
+        color: ~"[[setting:textcolour]]";
+        text-align: center;
+        position: relative;
+        padding: 2px;
+        min-height: 110px;
+        border-bottom: 1px solid @body-bg;
+        margin: 10px 14px 0 10px;
+    }
+
+    a.info {
+        display: inline-block;
+        text-decoration: none;
+        padding: 5px 9px;
+        background: rgba(255, 255, 255, 0.8);
+        font-weight: bold;
+        color: ~"[[setting:textcolour]]";
+        margin-top: 10px;
+        border-radius: 5px;
+        transition: all ease-out 0.25s;
+        &:hover {
+            background: ~"[[setting:pagebottombackground]]";
+        }
+    }
+}
+
+// Forum.
+.forumsearch input[type='submit'] {
+    margin: 0 0 0 2px;
+}
+
+// Scorm.
+#page-mod-scorm-report #region-main-shoehorn > div > table.boxaligncenter td {
+    display: inline-block;
+    padding-left: 0;
+}
+
+// Collapsed Topics.
+.course-content .ctopics .section ul.section {
+    padding-left: 0;
+}
+
+.course-content ul.ctopics li.section.main, .course-content ul.ctopics li.tcsection {
+    margin: 0;
+}
+
+body.format-topcoll .course-content div.row {
+    margin: 0;
+}
+
+.editing .ctopics .section .editing_title .iconsmall {
+    vertical-align: middle;
+}
+
+// Course tiles.
+body.coursetiles {
+    #region-main .section li.activity {
+        background: ~"[[setting:pagebottombackgroundlight]]";
+        height: 160px;
+        width: 200px;
+        float: left;
+        margin-right: 10px;
+        margin-top: 10px;
+        display: inline;
+        clear: none;
+        border-radius: 5px;
+        border: 1px solid ~"[[setting:pagebottombackground]]";
+        transition: all ease-out 0.5s;
+        &.label {
+            width: 100%;
+        }
+        &.label:hover {
+            background: transparent !important; 
+            transition: all ease-out 0.5s;
+        }
+    }
+
+    #region-main .modtype_label.label, .badge {
+        font-weight: lighter;
+    }
+
+    #region-main ul[class*="topics"] .section .activity, #region-main div.sitetopic .section .activity {
+        .activityinstance, .activityinstance div {
+            width:100%; 
+            height:100%;
+        }
+        .activityinstance {
+            padding-right: 2px;
+        }
+        .activityinstance > span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .activityinstance > a {
+            text-align: right; 
+            color: ~"[[setting:textcolour]]"; 
+            height: 152px; 
+            width: 192px; 
+            display: block;
+            padding: 10px;
+            transition: all ease-out .25s;
+            &:hover {
+                font-weight: bold;
+                text-decoration: none;
+                background-color: ~"[[setting:pagebottombackgroundlight75rgba]]";
+            }
+            // https://moodle.org/mod/forum/discuss.php?d=262151.
+            &.dimmed {
+                color: ~"[[setting:textcolour5dark]]"; 
+                background: ~"[[setting:pagebottombackgroundlight5dark]]";
+                &:hover, &:focus {
+                    color: ~"[[setting:textcolour10dark]]"; 
+                    background: ~"[[setting:pagebottombackgroundlight10dark]]";
+                }
+            }
+        }
+        .mod-indent-outer {
+            padding-left: 0;
+        }
+        img.activityicon {
+            float: left;
+        }
+        .commands {
+            position: relative;
+            top: -18px;
+            left: -100px;
+            width: 0;
+            font-weight: bold;
+            .iconsmall {
+                padding: 0;
+                width: 13px;
+                height: 13px;
+            }
+            ul {
+                line-height: 28px;
+            }
+            a {
+                &.editing_moveleft, &.editing_moveright {
+                    display: none;
+                }
+            }
+            &.moodle-actionmenu[data-enhance] {
+                top: -20px;
+                left: 0;
+                .iconsmall {
+                    margin: 2px 4px 2px 0;
+                }
+            }
+        }
+        .mod-indent {
+            padding-left: 0; 
+            height: 100%;
+            display: block;
+        }
+        .editing_move {
+            top: -15px;
+            left: -15px;
+        }
+        .availabilityinfo {
+            margin-top: -30px;
+        }
+        .availabilityinfo, .contentafterlink {
+            margin-left: 0;
+            border-top: 1px solid ~"[[setting:pagebottombackground]]";
+            width: 192px;
+        }
+        .contentafterlink {
+            position: relative;
+            margin-top: 0;
+            font-size: .85em;
+            height: 94px;
+            text-overflow: ellipsis;
+            overflow: auto;
+            line-height: 1.25em;
+            padding-top: 0;
+            top: -102px;
+        }
+        span.actions + .contentafterlink {
+            top: -120px;
+        }
+        .instancename {
+            font-weight: bold;
+            max-height: 40px;
+            overflow: hidden;
+            width: 124px;
+            float: right;
+        }
+
+        .actions {
+            position: relative;
+            top: -158px;
+            right: -130px;
+            input {
+                background: @body-bg;
+                color: ~"[[setting:pagetopbackground]]";
+            }
+            li {
+                padding-left: 4px;
+            }
+            li:first-of-type {
+                padding-left: 0;
+            }
+        }
+
+        .togglecompletion {
+            position: relative;
+            top: -12px;
+            left: 20px;
+        }
+
+        &.modtype_label.label {
+            clear: none;
+            width: 100%; 
+            height: auto; 
+            background: transparent; 
+            border: none; 
+            margin-top: 5px; 
+            margin-left: auto; 
+            margin-right: auto;
+            float: left;
+            position: relative;
+            top: 10px;
+            &:hover {
+                background: none;
+            }
+            .moodle-actionmenu[data-enhance].show .menu.align-tr-br {
+                margin-top: 0;
+            }
+            .editing_move {
+                left: -25px;
+                top: 0;
+            }
+            .commands {
+                margin-left: auto; 
+                margin-right: 20px; 
+                margin-bottom: 5px; 
+                float: right; 
+                clear: both;
+                &.moodle-actionmenu[data-enhance] {
+                    left: -20px;
+                }
+            }
+            .actions {
+                position: absolute;
+                top: 5px;
+                right: 20px;
+            }
+            .togglecompletion {
+                top: 0;
+            }
+        }
+    }
+
+    &.editing #region-main, &.editing #region-main .ctopics {
+        .section .activity {
+            margin-top: 0;
+            .mod-indent-outer {
+                padding-left: 0;
+            }
+            margin-top: 20px;
+            .autocompletion {
+                position: relative;
+                top: -20px;
+                left: -90px;
+            }
+            .moodle-actionmenu[data-enhance] .autocompletion {
+                left: -140px;
+            }
+            &.modtype_label.label .autocompletion {
+                left: 50px;
+            }
+        }
+        .section .moodle-actionmenu .iconsmall {
+            vertical-align: middle;
+        }
+    }
+    &.editing #region-main ul[class*="topics"], &.editing #region-main div.sitetopic {
+        .section .activity {
+            span.actions + .contentafterlink {
+                top: -134px;
+            }
+        }
+    }
+
+    &.editing #region-main .section .activity:hover,
+        #region-main .course-content .section .activity:hover,
+        #region-main .gtopics .section .activity:hover,
+        #region-main .sitetopic .section .activity:hover {
+        background: ~"[[setting:pagebottombackground]]";
+    }
+
+    &.path-site #region-main li.activity > div, 
+    &.path-course-view #region-main li.activity > div {
+        width: 100%; 
+        height: 100%;
+        padding: 0;
+    }
+
+    #region-main .mod-indent-1,
+    #region-main .mod-indent-2,
+    #region-main .mod-indent-3
+    #region-main .mod-indent-4,
+    #region-main .mod-indent-5 {
+        margin-left: 0;
+    }
+
+    #region-main .resourcelinkdetails {
+        float: right; 
+        position: relative; 
+        top: -100px; 
+        text-align: right;
+    }
+
+    &.jsenabled #region-main .section .moodle-actionmenu[data-enhance] {
+        .toggle-display.textmenu {
+            border-radius: 5px;
+            border: 1px solid ~"[[setting:pagebottombackground]]";
+            transition: all ease-out .25s;
+            &:hover {
+                background: ~"[[setting:pagebottombackgroundlight]]";
+                font-weight: bold;
+            }
+        }
+        &.show .menu {
+            box-shadow: none;
+            background: ~"[[setting:pagebottombackground]]";
+            &.align-tr-br {
+                right: 18px;
+                top: -5px;
+            }
+            a {
+                padding: 3px 10px;
+                &:focus {
+                    background: ~"[[setting:pagebottombackground]]";
+                    border-radius: 2px;
+                }
+                &:hover {
+                    background: ~"[[setting:pagebottombackgroundlight]]";
+                    font-weight: bold;
+                }
+                &:hover, &:focus {
+                    color: ~"[[setting:pagetopbackground]]";
+                }
+            }
+        }
+    }
+
+    #region-main .section a.editing_title {
+        top: -22px;
+        left: 10px;
+        position: relative;
+        .iconsmall {
+            vertical-align: middle;
+        }
+    }
+
+    #region-main .availabilityinfo {
+        display: none;
+    }
+
+    #region-main .sectionname {
+        font-size: 1.5em;
+    }
+
+    #region-main .centre_text {
+        clear: both; 
+        width: 100%; 
+        padding-top: 50px; 
+        min-height: 300px; 
+        border: none; 
+        background: transparent;
+        border-radius: 15px 0 0;
+    }
+
+    #region-main .introvideo {
+        width: auto; 
+        height: 315px;
+        overflow: hidden; 
+        float: left;
+        margin-bottom: 20px;
+    }
+
+    #region-main .topic_intro {
+        float: right; 
+        width: auto;
+        max-width: 350px;
+        min-width: 150px; 
+        color: ~"[[setting:textcolour]]";
+        font-size: 1.5em;
+        height: auto;
+        min-height: 300px;
+        margin-bottom:    20px;
+    }
+
+    #region-main .section-modchooser-link {
+        top: 20px; 
+        position:relative;
+        float:right;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    #region-main .course-content .single-section .section-navigation .title {
+        text-align: left;
+    }
+
+    #region-main #add, #region-main #remove, #region-main .centerpara {
+        text-align: left;
+    }
+
+    #region-main img.iconlarge {
+        width: 40px; 
+        height: 40px;
+    }
+
+    #region-main #completionprogressid {
+        display: none;
+    }
+
+    &#page-site-index #region-main .box.generalbox.sitetopic {
+        overflow: hidden; 
+        width: 100%;
+        clear: both;
+        margin-bottom: 10px;
+    }
+
+    #gridiconcontainer { // Grid format.
+                         clear: both;
+                         padding-top: 20px;
+    }
+}
+
+// FontAwesome icons.
+body.fontawesome {
+    .sfa {
+        display: inline-block;
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        padding-right: 4px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .dropdown-menu {
+        .fa {
+            margin-right: 5px;
+        }
+    }
+
+    .block_login {
+        .username label:before {
+            .sfa();
+            content: @fa-var-user;
+        }
+        .password label:before {
+            .sfa();
+            content: @fa-var-key;
+        }
+    }
+
+    .block .header .title h2:before {
+        .sfa();
+        content: @fa-var-navicon;
+    }
+
+    .block_news_items .header .title h2:before {
+        content: @fa-var-bullhorn;
+    }
+
+    .block_navigation .header .title h2:before {
+        content: @fa-var-sitemap;
+    }
+
+    .block_calendar_upcoming .header .title h2:before,
+        .block_calendar_month .header .title h2:before {
+        content: @fa-var-calendar;
+    }
+
+    .block_course_list .header .title h2:before {
+        content: @fa-var-desktop;
+    }
+
+    .block_completionstatus .header .title h2:before,
+        .block_selfcompletion .header .title h2:before {
+        content: @fa-var-tachometer;
+    }
+
+    .block_rss_client .header .title h2:before {
+        content: @fa-var-feed;
+    }
+
+    .block_blog_menu .header .title h2:before {
+        content: @fa-var-book;
+    }
+
+    .block_quiz_results .header .title h2:before {
+        content: @fa-var-bar-chart;
+    }
+
+    .block_quiz_navblock .header .title h2:before {
+        content: @fa-var-code-fork;
+    }
+
+    .block_glossary_random .header .title h2:before {
+        content: @fa-var-lightbulb-o;
+    }
+
+    .block_book_toc .header .title h2:before {
+        content: @fa-var-book;
+    }
+
+    .block_participants .header .title h2:before,
+        .block_online_users .header .title h2:before {
+        content: @fa-var-users;
+    }
+
+    .block_html .header .title h2:before {
+        content: @fa-var-list-alt;
+    }
+
+    .block_iconic_html .header .title h2:before {
+        padding-right: 0;
+        content: none;
+    }
+
+    .block_section_links .header .title h2:before {
+        content: @fa-var-bookmark;
+    }
+
+    .block_activity_modules .header .title h2:before {
+        content: @fa-var-puzzle-piece;
+    }
+
+    .block_comments .header .title h2:before {
+        content: @fa-var-comment;
+    }
+
+    .block_settings .header .title h2:before {
+        content: @fa-var-cogs;
+    }
+
+    .block_admin_bookmarks .header .title h2:before{
+        content: @fa-var-bookmark;
+    }
+
+    .block_blog_tags .header .title h2:before,
+        .block_tags .header .title h2:before {
+        content: @fa-var-tags;
+    }
+
+    .block_private_files .header .title h2:before {
+        content: @fa-var-folder-o;
+    }
+
+    .block_block_mentees .header .title h2:before {
+        content: @fa-var-users;
+    }
+
+    .block_messages .header .title h2:before {
+        content: @fa-var-envelope;
+    }
+
+    .block_community .header .title h2:before {
+        content: @fa-var-globe;
+    }
+
+    .block_login .header .title h2:before,
+        .block_myprofile .header .title h2:before {
+        content: @fa-var-user;
+    }
+
+    .block_recent_activity .header .title h2:before {
+        content: @fa-var-clock-o;
+    }
+
+    .block_search_forums .header .title h2:before {
+        content: @fa-var-comments-o;
+    }
+
+    .block_shoehorn_chart .header .title h2:before {
+        content: @fa-var-line-chart;
+    }
+
+    .block_adminblock .header .title h2:before {
+        content: @fa-var-th-large;
+    }
+
+    .block_feedback .header .title h2:before {
+        content: @fa-var-thumbs-o-up;
+    }
+
+    .block_flickr .header .title h2:before {
+        content: @fa-var-flickr;
+    }
+
+    .block_youtube .header .title h2:before {
+        content: @fa-var-youtube;
+    }
+
+    .block_course_badges .header .title h2:before {
+        content: @fa-var-trophy;
+    }
+
+    .block_twitter_search .header .title h2:before {
+        content: @fa-var-twitter;
+    }
+
+    .block_dashboardcourses .header .title h2:before {
+        content: @fa-var-laptop;
+    }
+
+    #block-region-side-middle .block_rss_client .header .title h2:before {
+        .sfa();
+        content: @fa-var-comments;
+    }
+
+    .entrybox li:before {
+        .sfa();
+        content: @fa-var-caret-right;
+    }
+
+    #page-calendar-view #heading h1:before {
+        .sfa();
+        content: @fa-var-calendar;
+    }
+
+    #site-news-forum h2:before {
+        .sfa();
+        content: @fa-var-bullhorn;
+    }
+
+    #frontpage-course-list h2:before,
+        #frontpage-category-combo h2:before {
+        .sfa();
+        content: @fa-var-laptop;
+    }
+
+    #frontpage-category-names h2:before {
+        .sfa();
+        content: @fa-var-folder-open;
+    }
+}
+
+// Do not vocalise icons.
+// Ref: http://www.w3schools.com/cssref/css_ref_aural.asp.
+.@{fa-css-prefix}, :before {
+    speak: none;
+}
+
+// Course single page.
+#myCourseCarousel .carousel-inner {
+    padding-bottom: 15px;
+    li.item {
+        min-height: 200px;
+        padding-left: 27px;
+        padding-right: 27px;
+        height: auto;
+    }
+    > .item.hidden {
+        display: none !important; // I do not like '!important' but no choice here.
+    }
+    > .item.hidden.active {
+        display: block !important; // I do not like '!important' but no choice here.
+    }
+    .section .label {
+        .contentwithoutlink, .activityinstance {
+            padding-right: 0;
+        }
+    }
+    > a {
+        &:hover, &:focus {
+            background-color: transparent;
+        }
+    }
+}
+
+#myCourseCarousel .carousel-control {
+    color: ~"[[setting:pagebottombackground]]";
+}
+
+@media(min-width: (@screen-xs-min + 1)) {
+    .shoehorn-single-course-page {
+        .section .activity .mod-indent-outer {
+            padding-left: 0;
+        }
+    }
+    #myCourseCarousel .carousel-inner {
+        li.item {
+            padding-left: 54px;
+            padding-right: 54px;
+        }
+    }
+    #moodle-navbar {
+        margin-bottom: -5px;
+    }
+}
+
+.course-content .shoehorn-single-course-page ul.section {
+    margin-left: 0;
+}
+
+// Carousel indicator pips.
+#myCourseCarousel .carousel-indicators {
+    bottom: -15px;
+    li {
+        border-color: ~"[[setting:pagebottombackground]]";
+
+        &.active {
+            background-color: ~"[[setting:pagebottombackground]]";
+            border-width: 2px;
+        }
+    }
+}
+
+// Marketing spots.
+.marketingspot {
+    .panel;
+    .panel-default;
+    padding: 4px;
+}
+
+.marketingspot h2 {
+    margin-top: 4px;
+}
+
+// Page bottom region.
+#block-region-page-bottom {
+    margin-top: 1em;
+    .block .input-group {
+        display: block; // Might need global not sure yet!  Affects 'Search in settings' 'Go' button.
+    }
+}
+
+body.editing #block-region-page-bottom .block {
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
+    //.make-sm-column(3);
+    //.make-md-column(3);
+    //.make-lg-column(3);
+}
+
+/*
+#block-region-page-bottom {
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: (@grid-gutter-width / 2);
+        padding-right: (@grid-gutter-width / 2);
+    }
+    .col-md-3 {
+        margin-left: (@grid-gutter-width / 2);
+        margin-right: (@grid-gutter-width / 2);
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+*/
+
+// Syntax highlighting.
+pre.sh {
+    display: none;
+}
+
+// Page info.
+#page-info {
+    margin-top: 1em;
+    text-align: center;
+    #shoehorn > .background-opacity(~"[[setting:pagebottombackground]]"; ~"[[setting:pagebottombackground5rgba]]");
+    border-style: solid;
+    border-width: 1px;
+    #shoehorn > .border-opacity(~"[[setting:pagebottombackground]]"; ~"[[setting:pagebottombackground7rgba]]");
+
+    .validators ul li {
+        display: inline;
+        list-style-type: none;
+        a:after {
+            content: ' | ';
+        }
+        &:last-of-type {
+            a:after {
+                content: '';
+            }
+        }
+    }
+}
+
+// Site pages.
+#page-theme-shoehorn-pages-sitepage .sitepagecontent img {
+    padding: 8px;
+    box-shadow: 0 0 8px ~"[[setting:pagetopbackground]]";
+    background-color: white;
+    margin: 0 0 !important; // I do not like importants but has to override core editor inline style.
+}
+
+// Quiz.
+body.horizontalquiz.pagelayout-incourse#page-mod-quiz-attempt {
+    .que {
+        .info {
+            border: 1px solid @state-info-border;
+            border-top-left-radius: @border-radius-base;
+            border-top-right-radius: @border-radius-base;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: @body-bg;
+            float: initial;
+            width: auto;
+            margin-bottom: -1px;
+            padding: 8px 8px 8px 18px;
+            > div {
+                font-size: @font-size-base;
+                margin-top: .7em;
+                padding-left: 25px;
+                display: inline;
+            }
+            .editquestion img.iconsmall {
+                margin-right: 0.3em;
+                margin-bottom: 0.3em;
+            }
+        }
+
+        .content {
+            margin: 0;
+            width: auto;
+            .formulation {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+
+        h3.no {
+            display: inline;
+            font-size: @font-size-base;
+            line-height: 1;
+            padding-right: 25px;
+            .qno {
+                font-size: inherit;
+            }
+        }
+    }
+}
+
+// Footer.
+#page-footer {
+    background-color: ~"[[setting:footerbottombackground]]";
+    #shoehorn > .verticalsettting(~"[[setting:footertopbackground]]"; ~"[[setting:footerbottombackground]]");
+    color: ~"[[setting:footertextcolour]]";
+    .themecredit {
+        font-size: 7pt;
+        text-align: center;
+        a, a:hover {
+            color: inherit;
+        }
+    }
+}
+
+#page-footer a {
+    color: ~"[[setting:footertextcolour]]";
+    &:hover, &:focus {
+        color: ~"[[setting:footertextcolourlight]]";
+        #shoehorn > .background-opacity(~"[[setting:footertopbackgroundlight]]"; ~"[[setting:footertopbackgroundlightrgba]]");
+    }
+}
+
+#page-footer .block-region {
+    width: 100%;
+}
+
+#page-footer .block {
+    width: 100%;
+    color: ~"[[setting:textcolour]]";
+    a {
+        color: ~"[[setting:linkcolour]]";
+        &:hover, &:active, &:focus {
+            color: ~"[[setting:linkcolourhover]]";
+        }
+    }
+    .hasevent a {
+        &:hover, &:active, &:focus {
+            color: ~"[[setting:textcolour8light]]";
+        }
+    }
+}
+
+// Social networks.
+ul.socialnetworks {
+    #shoehorn > .background-opacity(~"[[setting:pagebottombackground]]"; ~"[[setting:pagebottombackground5rgba]]");
+    border-style: solid;
+    border-width: 1px;
+    #shoehorn > .border-opacity(~"[[setting:pagebottombackground]]"; ~"[[setting:pagebottombackground7rgba]]");
+    margin: 0;
+}
+
+// Footer menu.
+#footermenu .divider {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+// Login page.
+.loginbox .loginpanel .loginsub:before {
+    .panel;
+    .panel-default;
+    padding: 4px;
+}
+
+.loginbox .loginpanel .loginsub label[for='username'] {
+    padding-top: 8px;
+}
+
+// General.
+select, input {
+    border-color: ~"[[setting:pagebottombackground]]";
+    border-radius: @border-radius-base;
+}
+
+.copyright:before {
+    content: "\00A9"; // Copyright symbol.
+}
+
+audio {
+    max-width: 100%;
+}
+
+// Anti gravity.
+.antiGravity {
+    background-color: ~"[[setting:pagebottombackground6rgba]]";
+    border-color: ~"[[setting:pagebottombackgroundlight]]";
+    border-radius: 1em;
+    border-style: solid;
+    border-width: 1px;
+    bottom: 32px;
+    cursor: pointer;
+    display: none;
+    font-size: 32px;
+    line-height: 1;
+    padding: 10px 10px 6px 10px; 
+    position: fixed;
+    right: 40px;
+    text-align: center; 
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+        border-radius: 1em;
+    }
+    .fa {
+        padding-bottom: 2px;
+    }
+}
+
+/*
+.dir-rtl .antiGravity {
+    left: 40px;
+    right: auto;
+}
+*/
+
+// XML DB Editor - Essential Issue #90.
+a[name="lastused"] {
+    padding-top: 50px;
+}
+
+// Course formats.
+// Collapsed Topics.
+.ctopics {
+    padding-left: 0;
+}
+
+// YUI dialog.
+// core.less ish.
+.debuggingmessage {
+    margin-left: 18px;
+}
+
+.moodle-dialogue-base .closebutton {
+    margin-top: 2px;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+// Chart.
+.block.block_shoehorn_chart {
+    background-color: @panel-bg;
+    .header h2 {
+        color: ~"[[setting:linkcolour]]";
+    }
+    .content {
+        padding: 0 0;
+    }
+}
+
+.ct-chart {
+    .ct-series.ct-series-a {
+        .ct-bar, .ct-line, .ct-point, .ct-slice.ct-donut {
+            stroke: ~"[[setting:linkcolour8rgba]]";
+        }
+    }
+    .ct-label {
+        color: ~"[[setting:linkcolour4rgba]]";
+    }
+    .ct-grid {
+        stroke: ~"[[setting:linkcolour2rgba]]";
+    }
+}
+
+// Way off piste...
+// http://css-tricks.com/custom-scrollbars-in-webkit/ and http://stackoverflow.com/questions/7725652/css-scrollbar-style-cross-browser
+body {
+    scrollbar-face-color: ~"[[setting:pagebottombackground]]";
+    scrollbar-shadow-color: ~"[[setting:pagetopbackground]]";
+    scrollbar-highlight-color: ~"[[setting:pagebottombackgroundlight]]";
+    scrollbar-3dlight-color: ~"[[setting:pagebottombackgroundlight]]";
+    scrollbar-darkshadow-color: ~"[[setting:pagebottombackgrounddark]]";
+    scrollbar-track-color: ~"[[setting:pagebottombackground]]";
+    scrollbar-arrow-color: ~"[[setting:textcolour]]";
+}
+
+::-webkit-scrollbar {
+    background-color: ~"[[setting:pagebottombackgrounddark]]";
+}
+
+::-webkit-scrollbar-track {
+    background-color: ~"[[setting:pagebottombackground]]";
+}
+::-webkit-scrollbar-track-piece {
+    background-color: ~"[[setting:pagebottombackgroundlight]]";
+}
+::-webkit-scrollbar-thumb {
+    background-color: ~"[[setting:pagebottombackground]]";
+    border-radius: 5px;
+    border: 2px solid ~"[[setting:pagebottombackgrounddark]]";
+}
+::-webkit-scrollbar-corner {
+    background-color: ~"[[setting:pagebottombackgroundlight]]";
+}

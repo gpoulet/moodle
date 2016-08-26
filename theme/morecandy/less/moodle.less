@@ -1,0 +1,982 @@
+/**
+ * Import all the rules from the parent.
+ */
+ @import "../../bootstrapbase/less/moodle.less";
+
+// Set body text and sideway header colours
+@bodyColor:                         #036;
+@sidewayHeaderColor:                #369; // Alternative #6F6B8E
+
+@navbarLinkColor:                   @white;
+
+@sidewayHeaderColorHover:           lighten(@sidewayHeaderColor, 25%);
+@navbarDividerDarker:               darken(@sidewayHeaderColor, 25%);
+@navbarDividerLighter:              @sidewayHeaderColorHover;
+@navbarLinkColorHover:              @sidewayHeaderColorHover;
+@hrBorder:                          @tableBackgroundAccent;
+
+@formActionsBackground:             @wellBackground;
+@navbarBackground:                  @wellBackground;
+@paginationActiveBackground:        @wellBackground;
+@tableBackgroundAccent:             darken(@wellBackground, 5%);
+@tableBackgroundHover:              darken(@wellBackground, 10%);
+@tableBorder:                       @wellBorder;
+
+@dropdownLinkColor:                 @sidewayHeaderColor;
+@dropdownLinkColorHover:            @navbarLinkColor;
+@dropdownLinkBackgroundHover:       @sidewayHeaderColor;
+
+@navbarBorder:                      @navbarDividerDarker;
+@navbarBackgroundHighlight:         @navbarDividerLighter;
+
+
+/* Modified Moodle CSS by Mary Evans based on
+   CSS-Tricks Example
+   by Chris Coyier
+   https://css-tricks.com/sideways-headers/
+   ----------------------------------------*/
+
+.jsenabled .block {
+    border-color: @sidewayHeaderColor;
+}
+
+.jsenabled .block.hidden,
+.jsenabled .block.block_adminblock {
+    background-color: @sidewayHeaderColor;
+}
+.editing {
+    .block {
+        .header {
+            .commands {
+                background-color: #eee;
+                border-color: @sidewayHeaderColor;;
+                border-style: dashed;
+                border-width: 1px 0;
+                width: auto;
+                margin: 0 15px;
+                text-align: center;
+            }
+        }
+    }
+}
+.section-modchooser-link {
+    font-size: 150%;
+    .btn;
+}
+
+/* End sidewayheadercolor
+-------------------------*/
+body.pagelayout-frontpage.has-banner {
+    padding-top: 40px;
+}
+body {
+    color: @bodyColor;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    &.pagelayout-mydashboard {
+        &.content-only {
+            background-image:  url([[pix:theme|bgbtm]]);
+            background-position: 0 0;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-color: #fff;
+        }
+        #region-main {
+            min-height: 300px;
+        }
+    }
+}
+.moodle-actionmenu {
+    &.show[data-enhanced] {
+        .menu {
+            a {
+                padding: 2px 0.5em;
+            }
+        }
+    }
+}
+#page-site-index {
+    .navbar-form {
+        input {
+            &.loginform {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+.navbar-inner {
+    background: none;
+    background-color: @sidewayHeaderColor;
+    box-shadow: none;
+    text-shadow: none;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Trebuchet MS', sans-serif;
+    line-height: 1;
+    font-size: 14px;
+}
+h1 {font-size: 150%;}
+h2 {font-size: 140%;}
+h3 {font-size: 130%;}
+h4 {font-size: 120%;}
+h5 {font-size: 110%;}
+h6 {font-size: 100%;}
+
+.coursebox {
+    .content {
+        .summary,
+        .coursecat {
+            width: 100%;
+            float: left;
+        }
+        .teachers,
+        .courseimage,
+        .coursefile {
+            width: 100%;
+        }
+    }
+    > .info {
+        > .coursename {
+            width: auto;
+            a {
+                background-image: url([[pix:theme|course]]);
+                background-position: left top;
+                float: left;
+            }
+        }
+    }
+}
+
+#page-course-index-category {
+    .generalbox.info {
+        margin: 1em 0;
+        padding: 0 5px;
+    }
+}
+.pagelayout-redirect {
+    text-align: center;
+    margin: 0 25%;
+    background-color: #fff;
+    .fa {
+        margin: 2em 0 0;
+        padding: 0;
+    }
+}
+#page-admin-purgecaches {
+    #notice {
+        width: 100%;
+        text-align: justify;
+    }
+}
+#page-course-view-topics #page-navbar,
+#page-course-view-weeks #page-navbar {
+    .breadcrumb-button {
+        position: fixed;
+        right: 25px;
+        top: 75px;
+        z-index: 3;
+    }
+}
+
+#page-course-view-topics.dir-rtl #page-navbar,
+#page-course-view-weeks.dir-rtl #page-navbar {
+    .breadcrumb-button {
+        position: fixed;
+        left: 25px;
+        right: auto;
+        top: 75px;
+        z-index: 3;
+    }
+}
+.dir-rtl {
+    .coursebox {
+        > .info {
+            > .coursename {
+                a {
+                    background-position: right top;
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
+/* Font special case
+-------------------------*/
+.fa:before {
+    margin-right: 3px;
+}
+.usermenu i.fa {
+    width: 25px;
+    margin: 0;
+}
+.usermenu .iconsmall {
+    width: 25px;
+    height: 25px;
+}
+.jsenabled .usermenu .moodle-actionmenu > .menu .filler {
+    margin: 0 1px;
+}
+.jsenabled .usermenu .moodle-actionmenu.show .menu {
+    padding: 0;
+}
+/* User avatars
+-------------------------*/
+.usermenu {
+    .avatars {
+        position: relative;
+        top: -2px;
+        img {
+            display: block;
+            border-color: @sidewayHeaderColorHover;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 50% 50% 6%;
+        }
+    }
+    .avatar {
+        img {
+            .userpicture {
+                display: block;
+                border-color: @sidewayHeaderColorHover;
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 50% 50% 6%;
+            }
+        }
+    }
+    li a {
+        font-size: 16px;
+    }
+    .moodle-actionmenu {
+        .toggle-display {
+            color: @sidewayHeaderColor;
+        }
+    }
+    &.show[data-enhanced] {
+        .menu {
+            a {
+                padding: 2px 1em;
+            }
+        }
+    }
+    .menu {
+        a {
+            outline: 0 none;
+        }
+    }
+}
+
+/* Forum post
+-------------------------*/
+.forumpost {
+    .picture {
+        img.userpicture {
+            border-radius: 50% 50% 6%;
+            border-width: 1px;
+            border-style: solid;
+            border-color: @sidewayHeaderColor;
+            margin-left: 3px;
+            margin-right: 10px;
+        }
+    }
+}
+.dir-rtl {
+    .usermenu {
+        .avatars {
+            img {
+                border-radius: 50% 50% 50% 5%;
+            }
+        }
+        .avatar {
+            border-radius: 50% 50% 50% 5%;
+        }
+    }
+    .forumpost {
+        .picture {
+            img.userpicture {
+                border-radius: 50% 50% 50% 5%;
+                margin-left: 10px;
+                margin-right: 3px;
+            }
+        }
+    }
+}
+
+// Navbar
+.navbar {
+    .nav > li > a,
+    a.brand {
+        color: @navbarLinkColor;
+        text-shadow: none;
+        &:hover {
+            background-color: @navbarDividerDarker;
+            color: @white;
+        }
+    }
+    .nav > li > a {
+        &:hover,
+        &:focus {
+            background-color: @navbarDividerDarker; // "transparent" is default to differentiate :hover/:focus from .active
+            color: @white;
+            text-decoration: none;
+        }
+    }
+    .nav {
+        .divider {
+            border-left-color: @navbarDividerDarker;
+            border-right-color: @navbarDividerLighter;
+        }
+        li.dropdown {
+            &.langmenu {
+                li {
+                    min-width: 160px;
+                }
+            }
+        }
+        li.dropdown > {
+            .dropdown-toggle {
+                .caret {
+                    border-bottom-color: @navbarLinkColor;
+                    border-top-color: @navbarLinkColor;
+                }
+            }
+        }
+    }
+}
+.usermenu {
+    .login > a {
+        color: @navbarLinkColor;
+    }
+    .login {
+        color: @navbarLinkColor;
+        a:hover,
+        a:focus {
+            color: @sidewayHeaderColorHover;
+        }
+    }
+    .moodle-actionmenu {
+        a.icon.menu-action {
+            color: @navbarLinkColor;
+            &:hover,
+            &:focus {
+                color: @sidewayHeaderColorHover;
+            }
+        }
+        .toggle-display {
+            background-color: @navbarDividerDarker;
+            color: @navbarLinkColorHover;
+            .userbutton {
+                .usertext {
+                    color: @navbarLinkColor;
+                    &:hover,
+                    &:focus {
+                        color: @navbarLinkColorHover;
+                    }
+                }
+            }
+        }
+        &.show[data-enhanced] {
+            .menu {
+                li:first-child {
+                    background-color:  @navbarDividerDarker;
+                    color:  @navbarLinkColor;
+                    &:hover,
+                    &:focus {
+                        color: @sidewayHeaderColorHover;
+                    }
+                }
+                a {
+                    color: @sidewayHeaderColor;
+                    &:hover,
+                    &:focus {
+                        color: @navbarLinkColor;
+                    }
+                }
+            }
+        }
+    }
+}
+.jsenabled {
+    .moodle-actionmenu[data-enhance] {
+        .toggle-display {
+            &.textmenu {
+                .caret {
+                    border-bottom-color: @navbarLinkColor;
+                    border-top-color: @navbarLinkColor;
+                }
+            }
+        }
+    }
+}
+
+/* Navbar toggle background
+-------------------------*/
+
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: @navbarLinkBackgroundHover;
+    color: @navbarLinkColorHover;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
+    border-bottom-color: @navbarLinkColorHover;
+    border-top-color: @navbarLinkColorHover;
+}
+.jsenabled {
+    .usermenu {
+        .moodle-actionmenu {
+            &.show {
+                background-color: @navbarLinkBackgroundHover;
+                color: @navbarLinkColorHover;
+                .menu a:hover {
+                    background: none;
+                    background-color: @sidewayHeaderColor;
+                }
+            }
+        }
+    }
+}
+#dockeditempanel .dockeditempanel_content {
+    border: 1px solid @sidewayHeaderColor;
+    width: auto;
+}
+
+@media and (max-width: 979px) {
+    .navbar {
+        .nav-collapse.in {
+            border-top-width: 0;
+            &.pull-left,
+            &.pull-right {
+                float: none;
+            }
+            > .nav {
+                margin: 0;
+
+                // Add padding to first-level links.
+                > li > a {
+                    padding-left: 20px;
+                    border-radius: 0;
+                }
+                .dropdown-menu {
+                    margin: 0 0 0 15px;
+                    li > a {
+                        border-radius: 0;
+                    }
+                }
+            }
+
+            .nav,
+            .nav .dropdown-menu {
+                .dropdown-submenu {
+                    .dropdown-toggle {
+                        &:after {
+                            display: inline-block;
+                            float: none;
+                            .caret();
+                            border-top-color: @navbarBorder;
+                            margin-left: 4px;
+                            margin-top: 8px;
+                        }
+                    }
+
+                    &.open {
+                        > a {
+                            background-color: @navbarBackground;
+                        }
+                    }
+
+                    // Suppress showing of submenu menu content on hover.
+                    &:hover {
+                        .dropdown-menu {
+                            display: none;
+                        }
+                        &.open {
+                            > a {
+                                background-color: @navbarBackground;
+                            }
+                            > .dropdown-menu,
+                            .open > .dropdown-menu {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                .divider {
+                    width: auto;
+                    display: block;
+                    height: 0;
+                    margin: 4px 1px;
+                    border-left: 0 none;
+                    border-right: 0 none;
+                    border-top: 1px solid @navbarBorder;
+                    border-bottom: 1px solid @navbarBackgroundHighlight;
+                }
+            }
+        }
+    }
+}
+
+/* Default Three Columns - All
+------------------------------*/
+.has-region-side-pre {
+    &.empty-region-side-pre {
+        &.has-region-side-post {
+            &.empty-region-side-post,
+            .content-only {
+                #region-main-box,
+                #region-main {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+.empty-region-side-pre {
+    &.used-region-side-post {
+        #region-main-box,
+        #region-main {
+            width: 100%;
+        }
+    }
+}
+.empty-region-side-post {
+    &.used-region-side-pre {
+        #region-main-box,
+        #region-main {
+            width: 100%;
+        }
+    }
+}
+.jsenabled {
+    &.docked-region-side-pre {
+        &.empty-region-side-pre {
+            &.used-region-side-post {
+                #region-main {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &.docked-region-side-post {
+        &.empty-region-side-post {
+            &.used-region-side-pre {
+                #region-main-box {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+/** Page layout CSS ends **/
+
+/* Langmenu - @font icons
+-------------------------*/
+.navbar {
+    .nav > {
+        li.langmenu {
+            &.open > {
+                .dropdown-menu {
+                    display: block;
+                    max-height: 400px;
+                    overflow-y: visible;
+                }
+                &:before,
+                &:after {
+                    overflow: visible;
+                }
+            }
+        }
+    }
+}
+/* Frontpage Folly
+-------------------------*/
+#frontpage-category-names,
+#frontpage-category-combo,
+#frontpage-course-list {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    h2 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        padding: 4px 5px;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* Border is the new background */
+        background: none;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+#frontpage-category-combo {
+    min-height: 100px;
+    .course_category_tree {
+        .category {
+            > .content {
+                padding-left: 0;
+            }
+        }
+    }
+}
+#frontpage-category-combo,
+#frontpage-category-names,
+#frontpage-course-list {
+    .course_category_tree {
+        padding: 10px;
+    }
+}
+
+#frontpage-category-names {
+    min-height: 180px;
+}
+
+#frontpage-course-list {
+    min-height: 300px;
+    .frontpage-course-list-enrolled {
+        padding: 10px;
+    }
+}
+
+#page-site-index {
+    .sitetopic {
+        margin-bottom: 15px;
+        padding-top: 0;
+        .carousel-inner {
+            > .item {
+                > img {
+                    height: 200px;
+                }
+            }
+            > a {
+                > img {
+                    height: 200px;
+                }
+            }
+        }
+    }
+}
+.moodle-actionmenu.show[data-enhanced] {
+    .menu {
+        .iconsmall,
+        .smallicon {
+            margin: 4px;
+            padding: 4px;
+        }
+    }
+}
+.invisible {
+    background-color: rgba(123, 123, 123, 0.5);
+}
+.jsenabled {
+    .usermenu {
+        .moodle-actionmenu[data-enhanced] {
+            .toggle-display.textmenu {
+                margin-left: 4px;
+                margin-right: -20px;
+            }
+            .menu {
+                .menu-action.icon:hover img {
+                    background-color: @white;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+.jsenabled.dir-rtl {
+    .usermenu {
+        .moodle-actionmenu[data-enhance] {
+            .toggle-display.textmenu {
+                margin-left: -20px;
+                margin-right: 4px;
+            }
+        }
+    }
+}
+
+#page-user-profile section.node_category,
+#page-grade-report-overview-index #region-main .no-overflow {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    min-height: 200px;
+    background-color: @white;
+    h3 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        padding: 4px 5px;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+#page-user-preferences {
+    #region-main {
+        position: relative;
+        border-color: @sidewayHeaderColor;
+        border-style: solid;
+        border-width: 1px 1px 1px 34px;
+        min-height: 200px;
+        background-color: @white;
+            h2 {
+            font: bold 12px Sans-Serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: @navbarLinkColor;
+            padding: 4px 5px;
+            line-height: 24px;
+            /* Abs positioning makes it not take up vert space */
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            /* Rotate from top left corner (not default) */
+
+            -webkit-transform-origin: 0 0;
+               -moz-transform-origin: 0 0;
+                -ms-transform-origin: 0 0;
+                 -o-transform-origin: 0 0;
+                    transform-origin: 0 0;
+
+            -webkit-transform: rotate(90deg);
+               -moz-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                 -o-transform: rotate(90deg);
+                    transform: rotate(90deg);
+        }
+        .preferences-groups {
+            padding-left: 20px;
+        }
+    }
+}
+
+.path-course-view {
+    .course-content {
+        ul li.section {
+            padding: 60px;
+            margin: -60px;
+        }
+    }
+}
+
+#page-grade-report-overview-index {
+    #region-main {
+        .no-overflow {
+            overflow: visible;
+        }
+    }
+}
+
+.dir-ltr .page-context-header {
+    .page-header-image {
+        float: none;
+        margin-right: 1em;
+        margin-bottom: 0;
+    }
+
+    .header-button-group {
+        float: none;
+    }
+}
+
+.dir-rtl .page-context-header {
+    .page-header-image {
+        float: none;
+        margin-left: 1em;
+        margin-bottom: 0;
+    }
+
+    .header-button-group {
+        float:none;
+    }
+}
+#page-navbar {
+    .breadcrumb-nav {
+        .breadcrumb {
+            float: none;
+            clear: left;
+        }
+    }
+}
+
+#page-user-profile {
+    img.userpicture.defaultuserpic {
+        border-width: 15px 15px 15px 0;
+        border-style: solid;
+        border-color: @sidewayHeaderColor;
+        border-radius: 0 50% 50% 0;
+        border-image: none;
+    }
+    .avatar.current {
+        img.userpicture.defaultuserpic {
+            border-width: 1px;
+            border-radius: 50% 50% 6%;
+            border-color: @sidewayHeaderColorHover;
+        }
+    }
+    #region-main {
+        #page-header {
+            margin-bottom: 20px;
+            #page-navbar {
+                .breadcrumb-button {
+                    margin: auto 20px;
+                }
+            }
+        }
+    }
+}
+
+.dir-rtl {
+    &#page-user-profile {
+        img.userpicture.defaultuserpic {
+            border-width: 15px 0 15px 15px;
+            border-style: solid;
+            border-color: @sidewayHeaderColor;
+            border-radius: 50% 0 0 50%;
+            border-image: none;
+        }
+        .avatar.current {
+            img.userpicture.defaultuserpic {
+                border-width: 1px;
+                border-radius: 50% 50% 50% 6%;
+            }
+        }
+    }
+}
+
+#page-login-index .signuppanel,
+#page-login-index .loginpanel,
+#page-user-profile .page-context-header {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    width: auto;
+    color: @sidewayHeaderColor;
+    h1 {
+        font-family: 'Impact';
+        font-size: 300%;
+        text-decoration: underline;
+    }
+    h2 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        padding: 4px 5px;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+
+#page-login-index .signuppanel,
+#page-login-index .loginpanel {
+    width: 45%;
+    margin: 0 2%;
+    height: 400px;
+}
+
+.dir-ltr .page-context-header .header-button-group {
+    float: left;
+}
+.dir-rtl .page-context-header .header-button-group {
+    float: right;
+}
+.page-context-header {
+    overflow: visible;
+}
+
+/* FontAwesome
+-------------------------*/
+.fa {
+    color: @sidewayHeaderColor;
+}
+/* Except the follwoing
+-------------------------*/
+a.brand .fa {
+    color: white;
+}
+.dock {
+    top: 40px;
+}
+#dock .dockeditem_container {
+    margin-top: 60px;
+}
+#dockeditempanel .dockeditempanel_hd .commands {
+    display: block;
+    text-align: right;
+    float: right;
+    clear: right;
+}
+.dockeditempanel_hd h2 {
+    float: left;
+    clear: left;
+}
+.dockeditempanel_bd {
+    margin-top: 30px;
+    max-height: 300px;
+    overflow: auto;
+}
+
+

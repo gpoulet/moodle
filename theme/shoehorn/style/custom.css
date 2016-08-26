@@ -1,0 +1,70 @@
+/* Shoehorn Custom CSS
+-------------------------*/
+#region-main-shoehorn-shadow {
+    background: url([[pix:theme|shadow]]) no-repeat scroll 50% 100% / 96% 12px transparent;
+    padding-bottom: 12px;
+    margin: 0 auto;
+    display: block;
+    clear: both; /* Clear floats that are sometimes used to make the #region-main-shoehorn fit the content, i.e Editing Quiz. */
+}
+
+#footer-shadow {
+    background: url([[pix:theme|shadow_footer]]) no-repeat scroll 50% 0% / 100% 12px transparent;
+    padding-top: 12px;
+    margin-top: 1em;
+    /* http://css-tricks.com/css-transparency-settings-for-all-broswers/ */
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+
+body.pagelayout-login #region-main.loggedout {
+    background: none;
+}
+
+.loginbox .loginpanel .loginsub:before {
+    [[setting:theloginmessge]]
+}
+
+/* Look and feel settings
+-------------------------*/
+body.allpagesbackgroundimage {
+    [[setting:landfallpagesbackgroundimage]]
+}
+
+body #region-main-shoehorn,
+body.allpagesbackgroundimage .panel-default,
+body.allpagesbackgroundimage .block,
+body.allpagesbackgroundimage .forumpost
+body.horizontalquiz.pagelayout-incourse#page-mod-quiz-attempt .que .info {
+    [[setting:landfallpagescontenttransparency]]
+}
+
+body #region-main-shoehorn-shadow {
+    [[setting:landfallpagescontenttransparencymain]]
+}
+
+body.frontpagebackgroundimage {
+    [[setting:landffrontpagebackgroundimage]]
+}
+
+body.pagelayout-frontpage #region-main-shoehorn,
+body.frontpagebackgroundimage .panel-default,
+body.allpagesbackgroundimage .block,
+body.allpagesbackgroundimage .forumpost {
+    [[setting:landffrontpagecontenttransparency]]
+}
+
+body.pagelayout-frontpage #region-main-shoehorn-shadow {
+    [[setting:landffrontpagecontenttransparencymain]]
+}
+
+/* Custom Font
+--------------*/
+[[setting:fontfilesheading]]
+
+[[setting:fontfilesbody]]
+
+/* Custom CSS Settings
+-------------------------*/
+[[setting:customcss]]

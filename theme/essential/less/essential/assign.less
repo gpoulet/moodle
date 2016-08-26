@@ -1,0 +1,36 @@
+/* @group Assign */
+
+#page-mod-assign-grader {
+    #page {
+        padding-top: 0;
+        #page-content {
+            margin-top: 0;
+            div[role=main] {
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+.path-mod-assign {
+    [data-region=grading-navigation-panel] {
+        position: relative;
+    }
+
+    [data-region=grade-actions], [data-region=grade-actions-panel] {
+        background-color: @white;
+    }
+}
+
+
+// Assignment file submission table.
+table.ygtvtable {
+    td {
+        background-color: inherit !important;
+        a {
+            color: inherit;
+        }
+    }
+}
+
+/* @end */
